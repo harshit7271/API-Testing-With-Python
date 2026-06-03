@@ -22,15 +22,17 @@ with sync_playwright() as p:
     page.get_by_placeholder("Enter your email").fill(EMAIL)
     page.get_by_placeholder("Enter your password").fill(PASSWORD)
 
+    page.screenshot(path='signin-page.png')
+
     # Click the Sign In button
     page.click('button[type="submit"]')
     print("Login successful, welcome message found.")
 
     # Wait for page to navigate after login
     page.wait_for_load_state('networkidle')
-    page.wait_for_timeout(2000)  # Wait 2 seconds for content to load
+    page.wait_for_timeout(8000)  # Wait 8 seconds for content to load
 
-    # Print what changed after login
+    # we'll print what changed after login
     print("After login - Page title:", page.title())
     print("After login - URL:", page.url)
 
