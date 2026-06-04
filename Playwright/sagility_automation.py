@@ -50,15 +50,18 @@ def run_automation():
             current_stage = "Testing Sidebar Navigation - Decision Engine"
             print("6. Testing Sidebar Navigation...")
             page.get_by_text("Decision Engine").click()
+            page.wait_for_timeout(8000)
             expect(page.get_by_text("Pending Activity")).to_be_visible()
             print("7. Navigated to Decision Engine: ", page.url)
 
             current_stage = "Testing Sidebar Navigation - Pending Activity"
             page.get_by_text("Pending Activity").click()
+            page.wait_for_timeout(5000)
             print("8. Navigated to Pending Activity: ", page.url)
 
             current_stage = "Returning to Dashboard"
             page.get_by_text("Dashboard").click()
+            page.wait_for_timeout(3000)
 
             current_stage = "Waiting for Dashboard iframe to render"
             dashboard_frame = page.frame_locator("iframe").first
