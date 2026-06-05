@@ -44,7 +44,8 @@ def run_automation():
             current_stage = "Filling Login Credentials"
             page.get_by_placeholder("Enter your email").fill(EMAIL or "")
             page.get_by_placeholder("Enter your password").fill(PASSWORD or "")
-            page.screenshot(path='signin-page.png')
+            page.screenshot(
+                path='before-login.png')
 
             current_stage = "Submitting Login"
             page.click('button[type="submit"]')
@@ -56,7 +57,8 @@ def run_automation():
 
             logging.info(f"3. After login - Page title: {page.title()}")
             logging.info(f"4. After login - URL: {page.url}")
-            page.screenshot(path='after-login.png')
+            page.screenshot(
+                path='after-login.png')
             logging.info("5. Login successful! Sagility Dashboard loaded")
 
             # 1. TEST SIDEBAR NAVIGATION
@@ -157,6 +159,18 @@ def run_automation():
             close_button.click()
             expect(close_button).to_be_hidden(timeout=5000)
             logging.info("18. Modal closed successfully.")
+
+            # 5. NAVIGATE TO SOURCE BY CANDIDATE APPLIED
+            current_stage = "Scrolling to Source By Candidate Applied"
+            logging.info(
+                "18. Scrolling further down to 'Source By Candidate Applied'...")
+            source_title = dashboard_frame.get_by_text(
+                "Source By Candidate Applied", exact=True).first
+            source_title.evaluate(
+                "el => el.scrollIntoView({ behavior: 'smooth', block: 'center' })")
+            page.wait_for_timeout(3000)
+            logging.info(
+                "19. Successfully reached 'Source By Candidate Applied'.")
 
         except Exception as e:
             # ERROR HANDLING
