@@ -156,7 +156,7 @@ def run_automation():
             logging.info("Clicking the ❌ button to close the modal...")
             close_button.click()
             expect(close_button).to_be_hidden(timeout=5000)
-            logging.info("Modal closed successfully.")
+            logging.info("18. Modal closed successfully.")
 
         except Exception as e:
             # ERROR HANDLING
