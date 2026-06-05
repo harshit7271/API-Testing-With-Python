@@ -129,6 +129,35 @@ def run_automation():
             logging.info(
                 "15. Calendar closed. New date range applied successfully.")
 
+            # --- 4. TEST OFFER ACCEPTANCE RATE MODAL ---
+            current_stage = "Testing Offer Acceptance Rate Modal"
+            logging.info("16. Scrolling down to 'Offer Acceptance Rate'...")
+            offer_title = dashboard_frame.get_by_text(
+                "Offer Acceptance Rate", exact=True).first
+            offer_title.evaluate(
+                "el => el.scrollIntoView({ behavior: 'smooth', block: 'center' })")
+            page.wait_for_timeout(8000)
+            logging.info("Clicking 'Compare' on Offer Acceptance Rate...")
+            offer_widget = dashboard_frame.locator("div").filter(
+                has=dashboard_frame.get_by_text(
+                    "Offer Acceptance Rate", exact=True)
+            ).filter(
+                has=dashboard_frame.get_by_text("Compare")
+            ).last
+            offer_compare_btn = offer_widget.get_by_role(
+                "button", name="Compare").first
+            offer_compare_btn.click()
+            # Wait for the modal to open
+            close_button = dashboard_frame.get_by_role(
+                "button", name="Close").first
+            expect(close_button).to_be_visible(timeout=5000)
+            logging.info("17. Modal opened successfully.")
+            page.wait_for_timeout(2000)
+            logging.info("Clicking the ❌ button to close the modal...")
+            close_button.click()
+            expect(close_button).to_be_hidden(timeout=5000)
+            logging.info("Modal closed successfully.")
+
         except Exception as e:
             # ERROR HANDLING
             logging.error("AUTOMATION FAILED!")
