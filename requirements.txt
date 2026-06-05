@@ -8,3 +8,6 @@ pytest
 pytest-order
 pytest-dependencies
 selenium
+playwright
+pytest-playwright
+pytest-html
