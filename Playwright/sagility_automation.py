@@ -129,7 +129,7 @@ def run_automation():
             logging.info(
                 "15. Calendar closed. New date range applied successfully.")
 
-            # --- 4. TEST OFFER ACCEPTANCE RATE MODAL ---
+            # 4. TEST OFFER ACCEPTANCE RATE MODAL
             current_stage = "Testing Offer Acceptance Rate Modal"
             logging.info("16. Scrolling down to 'Offer Acceptance Rate'...")
             offer_title = dashboard_frame.get_by_text(
