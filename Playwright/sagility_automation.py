@@ -116,9 +116,11 @@ def run_automation():
             expect(apply_button).to_be_visible(timeout=5000)
             logging.info("14. Calendar is open and ready.")
             logging.info("Selecting dates: 10th to 20th...")
-            dashboard_frame.get_by_text("10", exact=True).first.click()
+            dashboard_frame.get_by_text(
+                "10", exact=True).first.click(force=True)
             page.wait_for_timeout(500)
-            dashboard_frame.get_by_text("20", exact=True).first.click()
+            dashboard_frame.get_by_text(
+                "20", exact=True).first.click(force=True)
             page.wait_for_timeout(500)
             logging.info("Clicking Apply...")
             apply_button.click()
@@ -171,6 +173,35 @@ def run_automation():
             page.wait_for_timeout(3000)
             logging.info(
                 "19. Successfully reached 'Source By Candidate Applied'.")
+
+            # 6. TEST SOURCE BY CANDIDATE APPLIED MAP
+            current_stage = "Testing Map Interactions"
+            logging.info(
+                "20. Interacting with dynamic country cards on the map...")
+            logging.info("Scrolling the dashboard frame to the bottom...")
+            dashboard_frame.locator("body").evaluate(
+                "body => body.scrollIntoView({ behavior: 'smooth', block: 'end' })")
+            page.wait_for_timeout(2000)
+            country_cards = dashboard_frame.get_by_role(
+                "button").filter(has_text="Total Application:")
+            expect(country_cards.first).to_be_visible(timeout=5000)
+            card_count = country_cards.count()
+            logging.info(f"Found {card_count} country cards to interact with.")
+            if card_count == 0:
+                logging.warning(
+                    "No country cards found! The list might not have loaded.")
+            else:
+                for i in range(card_count):
+                    current_card = country_cards.nth(i)
+                    current_card.evaluate(
+                        "el => el.scrollIntoView({ behavior: 'smooth', block: 'center' })")
+                    page.wait_for_timeout(500)
+                    logging.info(
+                        f"Clicking country card {i + 1} of {card_count}...")
+                    current_card.click()
+                    page.wait_for_timeout(2000)
+
+            logging.info("21. Map interaction testing completed successfully.")
 
         except Exception as e:
             # ERROR HANDLING
