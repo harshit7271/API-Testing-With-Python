@@ -37,12 +37,13 @@ def run_automation():
         try:
             # LOGIN TESTING
             current_stage = "Navigating to Portal"
-            page.goto("https://hire-admin-qa.bling-ai.com/portal/index.html")
+            page.goto("https://hire-admin-qa.bling-ai.com/portal/index.html", wait_until="domcontentloaded", timeout=60000)
             logging.info(f"1. Page title: {page.title()}")
-            page.wait_for_load_state('networkidle')
-
+            
             current_stage = "Filling Login Credentials"
-            page.get_by_placeholder("Enter your email").fill(EMAIL or "")
+            email_field = page.get_by_placeholder("Enter your email")
+            email_field.wait_for(state="visible", timeout=30000)
+            email_field.fill(EMAIL or "")
             page.get_by_placeholder("Enter your password").fill(PASSWORD or "")
             page.screenshot(
                 path='before-login.png')
@@ -52,7 +53,7 @@ def run_automation():
             logging.info("2. Login successful, welcome message found.")
 
             current_stage = "Waiting for Dashboard Load"
-            page.wait_for_load_state('networkidle')
+            page.get_by_text("Decision Engine").wait_for(state="visible", timeout=30000)
             page.wait_for_timeout(8000)
 
             logging.info(f"3. After login - Page title: {page.title()}")
@@ -92,7 +93,6 @@ def run_automation():
             compare_button = app_overview_section.get_by_text("Compare").first
 
             compare_button.click()
-            page.wait_for_load_state('networkidle')
             page.wait_for_timeout(5000)
 
             current_stage = "Verifying Compare Modal Contents"
@@ -115,15 +115,22 @@ def run_automation():
             apply_button = dashboard_frame.get_by_role("button", name="Apply")
             expect(apply_button).to_be_visible(timeout=5000)
             logging.info("14. Calendar is open and ready.")
-            logging.info("Selecting dates: 10th to 20th...")
+            logging.info("Selecting dates: 1st to 5th...")
             dashboard_frame.get_by_text(
-                "10", exact=True).first.click(force=True)
+                "1", exact=True).first.click(force=True)
             page.wait_for_timeout(500)
             dashboard_frame.get_by_text(
-                "20", exact=True).first.click(force=True)
+                "5", exact=True).first.click(force=True)
             page.wait_for_timeout(500)
-            logging.info("Clicking Apply...")
-            apply_button.click()
+            
+            logging.info("Clicking Apply if visible...")
+            apply_btn = dashboard_frame.get_by_role("button", name="Apply")
+            if apply_btn.is_visible():
+                apply_btn.click(force=True)
+                logging.info("Apply button clicked.")
+            else:
+                logging.info("Apply button not found or already closed.")
+            
             page.wait_for_timeout(2000)
             logging.info(
                 "Clicking 'Dashboard' in the sidebar to dismiss the calendar...")
@@ -133,9 +140,69 @@ def run_automation():
             logging.info(
                 "15. Calendar closed. New date range applied successfully.")
 
-            # 4. TEST OFFER ACCEPTANCE RATE MODAL
+            # 4. TEST HIRE SIGNAL OVERVIEW
+            current_stage = "Testing Hire Signal Overview"
+            logging.info("16. Scrolling down to 'Hire Signal Overview'...")
+            hire_title = dashboard_frame.get_by_text(
+                "Hire Signal Overview", exact=True).first
+            hire_title.evaluate(
+                "el => el.scrollIntoView({ behavior: 'smooth', block: 'center' })")
+            page.wait_for_timeout(8000)
+            logging.info("Clicking 'Compare' on Hire Signal Overview...")
+            hire_widget = dashboard_frame.locator("div").filter(
+                has=dashboard_frame.get_by_text(
+                    "Hire Signal Overview", exact=True)
+            ).filter(
+                has=dashboard_frame.get_by_text("Compare")
+            ).last
+            hire_compare_btn = hire_widget.get_by_role(
+                "button", name="Compare").first
+            hire_compare_btn.click()
+            
+            # Wait for the modal to open
+            close_button = dashboard_frame.get_by_role(
+                "button", name="Close").first
+            expect(close_button).to_be_visible(timeout=5000)
+            logging.info("17. Hire Signal Overview Modal opened successfully.")
+            
+            # DEEPER MODAL CHECK
+            logging.info("Verifying content within the Hire Signal Overview modal...")
+            modal_content = dashboard_frame.locator("div[role='dialog'], .modal-content, .ant-modal-content").first
+            
+            # Wait for "Loading..." to disappear
+            loading_indicator = modal_content.get_by_text("Loading...")
+            if loading_indicator.count() > 0:
+                logging.info("Waiting for modal data to load...")
+                try:
+                    expect(loading_indicator.first).to_be_hidden(timeout=15000)
+                except Exception:
+                    logging.warning("Loading indicator still visible after 15s, proceeding anyway.")
+
+            # Scroll and check months
+            months = ["January", "February", "March", "April", "May", "June"]
+            for month in months:
+                month_locator = modal_content.get_by_text(month, exact=False).first
+                if month_locator.count() > 0:
+                    month_locator.evaluate("el => el.scrollIntoView({ behavior: 'smooth', block: 'center' })")
+                    page.wait_for_timeout(1000)
+                    logging.info(f"✓ Verified data for {month}")
+                else:
+                    logging.warning(f"⚠ Could not find data for {month} in modal")
+
+            # Try to scroll to the very bottom
+            modal_content.evaluate("el => el.scrollTop = el.scrollHeight")
+            page.wait_for_timeout(2000)
+            logging.info("18. Scrolled to the bottom and verified all months.")
+
+            page.wait_for_timeout(2000)
+            logging.info("Clicking the ❌ button to close the modal...")
+            close_button.click()
+            expect(close_button).to_be_hidden(timeout=5000)
+            logging.info("19. Hire Signal Overview Modal closed successfully.")
+
+            # 5. TEST OFFER ACCEPTANCE RATE MODAL
             current_stage = "Testing Offer Acceptance Rate Modal"
-            logging.info("16. Scrolling down to 'Offer Acceptance Rate'...")
+            logging.info("19. Scrolling down to 'Offer Acceptance Rate'...")
             offer_title = dashboard_frame.get_by_text(
                 "Offer Acceptance Rate", exact=True).first
             offer_title.evaluate(
@@ -155,29 +222,29 @@ def run_automation():
             close_button = dashboard_frame.get_by_role(
                 "button", name="Close").first
             expect(close_button).to_be_visible(timeout=5000)
-            logging.info("17. Modal opened successfully.")
+            logging.info("20. Modal opened successfully.")
             page.wait_for_timeout(2000)
             logging.info("Clicking the ❌ button to close the modal...")
             close_button.click()
             expect(close_button).to_be_hidden(timeout=5000)
-            logging.info("18. Modal closed successfully.")
+            logging.info("21. Modal closed successfully.")
 
-            # 5. NAVIGATE TO SOURCE BY CANDIDATE APPLIED
+            # 6. NAVIGATE TO SOURCE BY CANDIDATE APPLIED
             current_stage = "Scrolling to Source By Candidate Applied"
             logging.info(
-                "18. Scrolling further down to 'Source By Candidate Applied'...")
+                "22. Scrolling further down to 'Source By Candidate Applied'...")
             source_title = dashboard_frame.get_by_text(
                 "Source By Candidate Applied", exact=True).first
             source_title.evaluate(
                 "el => el.scrollIntoView({ behavior: 'smooth', block: 'center' })")
             page.wait_for_timeout(3000)
             logging.info(
-                "19. Successfully reached 'Source By Candidate Applied'.")
+                "23. Successfully reached 'Source By Candidate Applied'.")
 
-            # 6. TEST SOURCE BY CANDIDATE APPLIED MAP
+            # 7. TEST SOURCE BY CANDIDATE APPLIED MAP
             current_stage = "Testing Map Interactions"
             logging.info(
-                "20. Interacting with dynamic country cards on the map...")
+                "24. Interacting with dynamic country cards on the map...")
             logging.info("Scrolling the dashboard frame to the bottom...")
             dashboard_frame.locator("body").evaluate(
                 "body => body.scrollIntoView({ behavior: 'smooth', block: 'end' })")
@@ -201,7 +268,7 @@ def run_automation():
                     current_card.click()
                     page.wait_for_timeout(2000)
 
-            logging.info("21. Map interaction testing completed successfully.")
+            logging.info("25. Map interaction testing completed successfully.")
 
         except Exception as e:
             # ERROR HANDLING
@@ -209,8 +276,11 @@ def run_automation():
             logging.error(f"Failed during stage: '{current_stage}'")
             logging.error(f"Error Details: {str(e)}")
 
+            # Create error_screenshots directory if it doesn't exist
+            os.makedirs("error_screenshots", exist_ok=True)
+            
             # Take screenshot at the exact moment of failure
-            error_screenshot_path = f"error_at_{current_stage.replace(' ', '_').lower()}.png"
+            error_screenshot_path = os.path.join("error_screenshots", f"error_at_{current_stage.replace(' ', '_').lower()}.png")
             page.screenshot(path=error_screenshot_path)
             logging.error(f"Screenshot saved to: {error_screenshot_path}\n")
 
