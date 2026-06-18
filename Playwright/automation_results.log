@@ -1,62 +1,75 @@
-2026-06-17 02:32:52 [INFO] [81] 1. Page title: Sagility - Sign In
-2026-06-17 02:32:53 [INFO] [93] 2. Login successful, welcome message found.
-2026-06-17 02:33:02 [INFO] [100] 3. After login - Page title: Sagility Portal
-2026-06-17 02:33:02 [INFO] [101] 4. After login - URL: https://hire-admin-qa.bling-ai.com/portal/index.html
-2026-06-17 02:33:02 [INFO] [104] 5. Login successful! Sagility Dashboard loaded
-2026-06-17 02:33:02 [INFO] [108] 6. Testing Sidebar Navigation...
-2026-06-17 02:33:10 [INFO] [112] 7. Navigated to Decision Engine: https://hire-admin-qa.bling-ai.com/portal/index.html
-2026-06-17 02:33:15 [INFO] [117] 8. Navigated to Pending Activity: https://hire-admin-qa.bling-ai.com/portal/index.html
-2026-06-17 02:33:20 [INFO] [131] 9. Returned to Dashboard and verified UI rendered.
-2026-06-17 02:33:20 [INFO] [135] 10. Testing 'Compare' Modal functionality...
-2026-06-17 02:33:25 [INFO] [144] Closing the Compare modal...
-2026-06-17 02:33:26 [INFO] [154] 11. Compare metrics closed successfully
-2026-06-17 02:33:29 [INFO] [159] 12. Application Overview testing completed.
-2026-06-17 02:33:29 [INFO] [163] 13. Starting Hire Signal Overview - Optimized permutation validation...
-2026-06-17 02:33:36 [INFO] [184] Validating: Hire / Hire
-2026-06-17 02:33:37 [INFO] [208] ✅ Nova:0 | Recruiter:28 | Match:0 (Verified)
-2026-06-17 02:33:39 [INFO] [184] Validating: Hire / Decline
-2026-06-17 02:33:41 [INFO] [208] ✅ Nova:0 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:33:43 [INFO] [184] Validating: Hire / Hold
-2026-06-17 02:33:45 [INFO] [208] ✅ Nova:0 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:33:47 [INFO] [184] Validating: Hire / Pending
-2026-06-17 02:33:48 [INFO] [208] ✅ Nova:0 | Recruiter:89 | Match:0 (Verified)
-2026-06-17 02:33:52 [INFO] [184] Validating: Consider / Hire
-2026-06-17 02:33:54 [INFO] [208] ✅ Nova:3 | Recruiter:28 | Match:1 (Verified)
-2026-06-17 02:33:56 [INFO] [184] Validating: Consider / Decline
-2026-06-17 02:33:57 [INFO] [208] ✅ Nova:3 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:33:59 [INFO] [184] Validating: Consider / Hold
-2026-06-17 02:34:01 [INFO] [208] ✅ Nova:3 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:34:03 [INFO] [184] Validating: Consider / Pending
-2026-06-17 02:34:05 [INFO] [208] ✅ Nova:3 | Recruiter:89 | Match:2 (Verified)
-2026-06-17 02:34:08 [INFO] [184] Validating: Do Not Hire / Hire
-2026-06-17 02:34:10 [INFO] [208] ✅ Nova:19 | Recruiter:28 | Match:5 (Verified)
-2026-06-17 02:34:12 [INFO] [184] Validating: Do Not Hire / Decline
-2026-06-17 02:34:13 [INFO] [208] ✅ Nova:19 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:34:16 [INFO] [184] Validating: Do Not Hire / Hold
-2026-06-17 02:34:17 [INFO] [208] ✅ Nova:19 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:34:19 [INFO] [184] Validating: Do Not Hire / Pending
-2026-06-17 02:34:21 [INFO] [208] ✅ Nova:19 | Recruiter:89 | Match:14 (Verified)
-2026-06-17 02:34:24 [INFO] [184] Validating: Pending / Hire
-2026-06-17 02:34:26 [INFO] [208] ✅ Nova:83 | Recruiter:28 | Match:20 (Verified)
-2026-06-17 02:34:28 [INFO] [184] Validating: Pending / Decline
-2026-06-17 02:34:30 [INFO] [208] ✅ Nova:83 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:34:32 [INFO] [184] Validating: Pending / Hold
-2026-06-17 02:34:33 [INFO] [208] ✅ Nova:83 | Recruiter:0 | Match:0 (Verified)
-2026-06-17 02:34:35 [INFO] [184] Validating: Pending / Pending
-2026-06-17 02:34:37 [INFO] [208] ✅ Nova:83 | Recruiter:89 | Match:83 (Verified)
-2026-06-17 02:34:37 [INFO] [243] Clicking Reset button...
-2026-06-17 02:34:40 [INFO] [246] 14. Hire Signal Overview validation completed.
-2026-06-17 02:34:40 [INFO] [250] 15. Scrolling to 'Offer Acceptance Rate'...
-2026-06-17 02:34:44 [INFO] [254] Clicking 'Compare' on Offer Acceptance Rate...
-2026-06-17 02:34:44 [INFO] [264] 16. Modal opened. Closing...
-2026-06-17 02:34:44 [INFO] [267] 17. Modal closed.
-2026-06-17 02:34:44 [INFO] [271] 22. Scrolling further down to 'Source By Candidate Applied'...
-2026-06-17 02:34:47 [INFO] [278] 23. Successfully reached 'Source By Candidate Applied'.
-2026-06-17 02:34:47 [INFO] [283] 24. Interacting with dynamic country cards on the map...
-2026-06-17 02:34:47 [INFO] [285] Scrolling the dashboard frame to the bottom...
-2026-06-17 02:34:49 [INFO] [293] Found 3 country cards to interact with.
-2026-06-17 02:34:50 [INFO] [303] Clicking country card 1 of 3...
-2026-06-17 02:34:52 [INFO] [303] Clicking country card 2 of 3...
-2026-06-17 02:34:55 [INFO] [303] Clicking country card 3 of 3...
-2026-06-17 02:34:57 [INFO] [308] 25. Map interaction testing completed successfully.
-2026-06-17 02:34:57 [INFO] [335] Closing browser...
+2026-06-19 00:37:51 [INFO] [9] 1. Navigating to Portal...
+2026-06-19 00:37:53 [INFO] [11] Page title: Sagility - Sign In
+2026-06-19 00:37:53 [INFO] [13] Filling Login Credentials...
+2026-06-19 00:37:53 [INFO] [20] Submitting Login...
+2026-06-19 00:37:53 [INFO] [22] 2. Login successful, waiting for dashboard.
+2026-06-19 00:38:03 [INFO] [17] 3. After login - Page title: Sagility Portal
+2026-06-19 00:38:03 [INFO] [18] 4. After login - URL: https://dev-hire-admin.bling-ai.com/portal/index.html
+2026-06-19 00:38:03 [INFO] [20] 5. Login successful! Sagility Dashboard loaded
+2026-06-19 00:38:03 [INFO] [23] 6. Testing Sidebar Navigation...
+2026-06-19 00:38:11 [INFO] [27] 7. Navigated to Decision Engine: https://dev-hire-admin.bling-ai.com/portal/index.html
+2026-06-19 00:38:16 [INFO] [31] 8. Navigated to Pending Activity: https://dev-hire-admin.bling-ai.com/portal/index.html
+2026-06-19 00:38:21 [INFO] [42] 9. Returned to Dashboard and verified UI rendered.
+2026-06-19 00:38:21 [INFO] [47] 10. Testing 'Compare' Modal functionality...
+2026-06-19 00:38:26 [INFO] [60] 11. Compare metrics closed successfully
+2026-06-19 00:38:29 [INFO] [65] 12. Application Overview testing completed.
+2026-06-19 00:38:29 [INFO] [66] 13. Calendar and Compare tab logic bypassed successfully.
+2026-06-19 00:38:29 [INFO] [72] 14. Scrolling down to 'Hire Signal Overview'...
+2026-06-19 00:38:37 [INFO] [85] 15. Hire Signal Overview Modal opened successfully.
+2026-06-19 00:38:39 [INFO] [103] ✓ Verified data for January
+2026-06-19 00:38:40 [INFO] [103] ✓ Verified data for February
+2026-06-19 00:38:41 [INFO] [103] ✓ Verified data for March
+2026-06-19 00:38:43 [INFO] [103] ✓ Verified data for April
+2026-06-19 00:38:44 [INFO] [103] ✓ Verified data for May
+2026-06-19 00:38:45 [INFO] [103] ✓ Verified data for June
+2026-06-19 00:38:47 [INFO] [109] 16. Scrolled to the bottom and verified all months.
+2026-06-19 00:38:47 [INFO] [113] 17. Hire Signal Overview Modal closed successfully.
+2026-06-19 00:38:47 [INFO] [118] 18. Running the full 16-combination matrix test...
+2026-06-19 00:38:49 [INFO] [144] Testing Flow: Hire (Nova) -> Hire (Recruiter)
+2026-06-19 00:38:53 [INFO] [182] ✅ Verified Hire -> Hire | Match Count synced at: 10
+2026-06-19 00:38:53 [INFO] [144] Testing Flow: Hire (Nova) -> Decline (Recruiter)
+2026-06-19 00:38:57 [INFO] [182] ✅ Verified Hire -> Decline | Match Count synced at: 0
+2026-06-19 00:38:57 [INFO] [144] Testing Flow: Hire (Nova) -> Hold (Recruiter)
+2026-06-19 00:39:01 [INFO] [182] ✅ Verified Hire -> Hold | Match Count synced at: 0
+2026-06-19 00:39:01 [INFO] [144] Testing Flow: Hire (Nova) -> Pending (Recruiter)
+2026-06-19 00:39:05 [INFO] [182] ✅ Verified Hire -> Pending | Match Count synced at: 4
+2026-06-19 00:39:05 [INFO] [144] Testing Flow: Consider (Nova) -> Hire (Recruiter)
+2026-06-19 00:39:09 [INFO] [182] ✅ Verified Consider -> Hire | Match Count synced at: 3
+2026-06-19 00:39:09 [INFO] [144] Testing Flow: Consider (Nova) -> Decline (Recruiter)
+2026-06-19 00:39:13 [INFO] [182] ✅ Verified Consider -> Decline | Match Count synced at: 0
+2026-06-19 00:39:13 [INFO] [144] Testing Flow: Consider (Nova) -> Hold (Recruiter)
+2026-06-19 00:39:16 [INFO] [182] ✅ Verified Consider -> Hold | Match Count synced at: 0
+2026-06-19 00:39:16 [INFO] [144] Testing Flow: Consider (Nova) -> Pending (Recruiter)
+2026-06-19 00:39:20 [INFO] [182] ✅ Verified Consider -> Pending | Match Count synced at: 1
+2026-06-19 00:39:20 [INFO] [144] Testing Flow: Do Not Hire (Nova) -> Hire (Recruiter)
+2026-06-19 00:39:24 [INFO] [182] ✅ Verified Do Not Hire -> Hire | Match Count synced at: 16
+2026-06-19 00:39:24 [INFO] [144] Testing Flow: Do Not Hire (Nova) -> Decline (Recruiter)
+2026-06-19 00:39:28 [INFO] [182] ✅ Verified Do Not Hire -> Decline | Match Count synced at: 0
+2026-06-19 00:39:28 [INFO] [144] Testing Flow: Do Not Hire (Nova) -> Hold (Recruiter)
+2026-06-19 00:39:32 [INFO] [182] ✅ Verified Do Not Hire -> Hold | Match Count synced at: 0
+2026-06-19 00:39:32 [INFO] [144] Testing Flow: Do Not Hire (Nova) -> Pending (Recruiter)
+2026-06-19 00:39:36 [INFO] [182] ✅ Verified Do Not Hire -> Pending | Match Count synced at: 12
+2026-06-19 00:39:36 [INFO] [144] Testing Flow: Pending (Nova) -> Hire (Recruiter)
+2026-06-19 00:39:40 [INFO] [182] ✅ Verified Pending -> Hire | Match Count synced at: 1
+2026-06-19 00:39:40 [INFO] [144] Testing Flow: Pending (Nova) -> Decline (Recruiter)
+2026-06-19 00:39:44 [INFO] [182] ✅ Verified Pending -> Decline | Match Count synced at: 0
+2026-06-19 00:39:44 [INFO] [144] Testing Flow: Pending (Nova) -> Hold (Recruiter)
+2026-06-19 00:39:48 [INFO] [182] ✅ Verified Pending -> Hold | Match Count synced at: 0
+2026-06-19 00:39:48 [INFO] [144] Testing Flow: Pending (Nova) -> Pending (Recruiter)
+2026-06-19 00:39:52 [INFO] [182] ✅ Verified Pending -> Pending | Match Count synced at: 108
+2026-06-19 00:39:53 [INFO] [193] 19. All 16 combinations fully tested and validated successfully.
+2026-06-19 00:39:53 [INFO] [199] 20. Scrolling down to 'Offer Acceptance Rate'...
+2026-06-19 00:40:01 [INFO] [212] 21. Modal opened successfully.
+2026-06-19 00:40:03 [INFO] [216] 22. Modal closed successfully.
+2026-06-19 00:40:03 [INFO] [221] 23. Scrolling further down to 'Source By Candidate Applied'...
+2026-06-19 00:40:06 [INFO] [228] 24. Successfully reached 'Source By Candidate Applied'.
+2026-06-19 00:40:06 [INFO] [230] 25. Interacting with dynamic country cards on the map...
+2026-06-19 00:40:08 [INFO] [240] Found 3 country cards to interact with.
+2026-06-19 00:40:09 [INFO] [251] Clicking country card 1 of 3...
+2026-06-19 00:40:11 [INFO] [251] Clicking country card 2 of 3...
+2026-06-19 00:40:14 [INFO] [251] Clicking country card 3 of 3...
+2026-06-19 00:40:16 [INFO] [255] 26. Map interaction testing completed successfully.
+2026-06-19 00:40:16 [INFO] [61] 
+🎉 AUTOMATION SUITE COMPLETED SUCCESSFULLY 🎉
+
+2026-06-19 00:40:16 [INFO] [84] Closing browser...
